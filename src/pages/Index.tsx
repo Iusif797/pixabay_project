@@ -47,10 +47,10 @@ export default function Index() {
         {!showFavorites && (
           <section className="text-center mb-12">
             <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-4 animate-slide-up">
-              Discover stunning images
+              {t('main.title')}
             </h1>
             <p className="text-lg text-muted-foreground mb-8 animate-slide-up">
-              Search millions of free high-quality photos from Pixabay
+              {t('main.subtitle')}
             </p>
 
             <SearchForm

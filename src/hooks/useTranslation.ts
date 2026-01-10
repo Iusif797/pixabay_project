@@ -49,6 +49,20 @@ const translations: Translations = {
     en: 'Failed to load images. Please try again.',
     ru: 'Не удалось загрузить изображения. Попробуйте еще раз.',
   },
+  'modal.photographer': { en: 'Photographer', ru: 'Фотограф' },
+  'modal.likes': { en: 'Likes', ru: 'Лайки' },
+  'modal.downloads': { en: 'Downloads', ru: 'Загрузки' },
+  'modal.tags': { en: 'Tags', ru: 'Теги' },
+  'modal.viewOnPixabay': { en: 'View on Pixabay', ru: 'Посмотреть на Pixabay' },
+  'pagination.previous': { en: 'Previous', ru: 'Предыдущая' },
+  'pagination.next': { en: 'Next', ru: 'Следующая' },
+  'pagination.page': { en: 'Page', ru: 'Страница' },
+  'pagination.of': { en: 'of', ru: 'из' },
+  'imageCard.addFavorite': { en: 'Add to favorites', ru: 'Добавить в избранное' },
+  'imageCard.removeFavorite': { en: 'Remove from favorites', ru: 'Удалить из избранного' },
+  'notfound.title': { en: '404', ru: '404' },
+  'notfound.subtitle': { en: 'Oops! Page not found', ru: 'Ой! Страница не найдена' },
+  'notfound.home': { en: 'Return to Home', ru: 'Вернуться домой' },
 };
 
 export function useTranslation() {

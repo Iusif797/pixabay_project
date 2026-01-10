@@ -1,5 +1,6 @@
-import { Heart, Sun, Moon, Globe } from "lucide-react";
+import { Heart, Sun, Moon, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "@/hooks/useTranslation";
 
@@ -48,18 +49,44 @@ export function Header({
               </span>
             )}
           </Button>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={toggleLanguage}
-            className="w-10 h-10 rounded-xl"
-            title={language === 'en' ? 'Switch to Russian' : 'Переключить на английский'}
-          >
-            <Globe className="w-5 h-5" />
-            <span className="sr-only">
-              {language === 'en' ? 'RU' : 'EN'}
-            </span>
-          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="ghost"
+                className="h-10 px-3 rounded-xl gap-2"
+              >
+                <span className="text-lg">
+                  {language === 'en' ? '🇬🇧' : '🇷🇺'}
+                </span>
+                <span className="font-medium">
+                  {language === 'en' ? 'EN' : 'RU'}
+                </span>
+                <ChevronDown className="w-4 h-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-40">
+              <DropdownMenuItem 
+                onClick={() => language !== 'en' && toggleLanguage()}
+                className="cursor-pointer"
+              >
+                <span className="text-lg mr-2">🇬🇧</span>
+                <span>English</span>
+                {language === 'en' && (
+                  <span className="ml-auto text-primary">✓</span>
+                )}
+              </DropdownMenuItem>
+              <DropdownMenuItem 
+                onClick={() => language !== 'ru' && toggleLanguage()}
+                className="cursor-pointer"
+              >
+                <span className="text-lg mr-2">🇷🇺</span>
+                <span>Русский</span>
+                {language === 'ru' && (
+                  <span className="ml-auto text-primary">✓</span>
+                )}
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
           <Button
             variant="ghost"
             size="icon"

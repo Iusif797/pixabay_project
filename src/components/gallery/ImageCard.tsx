@@ -1,6 +1,7 @@
-import { Star } from "lucide-react";
+import { Heart } from "lucide-react";
 import type { PixabayImage } from "@/lib/pixabay";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "@/hooks/useTranslation";
 
 interface ImageCardProps {
   image: PixabayImage;
@@ -9,6 +10,7 @@ interface ImageCardProps {
   onClick: () => void;
 }
 export function ImageCard({ image, isFavorite, onFavoriteToggle, onClick }: ImageCardProps) {
+  const { t } = useTranslation();
   const handleFavoriteClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     onFavoriteToggle();
@@ -61,9 +63,9 @@ export function ImageCard({ image, isFavorite, onFavoriteToggle, onClick }: Imag
             ? "bg-favorite text-favorite-foreground scale-110"
             : "bg-card/80 text-muted-foreground hover:bg-card hover:text-foreground"
         )}
-        aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
+        aria-label={isFavorite ? t('imageCard.removeFavorite') : t('imageCard.addFavorite')}
       >
-        <Star
+        <Heart
           className={cn("w-5 h-5 transition-transform", isFavorite && "fill-current")}
         />
       </button>

@@ -2,12 +2,14 @@ import { useEffect } from "react";
 import { X, Heart, Download, Tag, User } from "lucide-react";
 import type { PixabayImage } from "@/lib/pixabay";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "@/hooks/useTranslation";
 
 interface ImageModalProps {
   image: PixabayImage;
   onClose: () => void;
 }
 export function ImageModal({ image, onClose }: ImageModalProps) {
+  const { t } = useTranslation();
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -68,7 +70,7 @@ export function ImageModal({ image, onClose }: ImageModalProps) {
                 </div>
               )}
               <div>
-                <p className="text-sm text-muted-foreground">Photographer</p>
+                <p className="text-sm text-muted-foreground">{t('modal.photographer')}</p>
                 <p className="font-semibold text-foreground">{image.user}</p>
               </div>
             </div>
@@ -76,7 +78,7 @@ export function ImageModal({ image, onClose }: ImageModalProps) {
               <div className="flex items-center gap-2 p-3 rounded-xl bg-secondary/50">
                 <Heart className="w-5 h-5 text-destructive" />
                 <div>
-                  <p className="text-xs text-muted-foreground">Likes</p>
+                  <p className="text-xs text-muted-foreground">{t('modal.likes')}</p>
                   <p className="font-semibold text-foreground">
                     {image.likes.toLocaleString()}
                   </p>
@@ -86,7 +88,7 @@ export function ImageModal({ image, onClose }: ImageModalProps) {
               <div className="flex items-center gap-2 p-3 rounded-xl bg-secondary/50">
                 <Download className="w-5 h-5 text-primary" />
                 <div>
-                  <p className="text-xs text-muted-foreground">Downloads</p>
+                  <p className="text-xs text-muted-foreground">{t('modal.downloads')}</p>
                   <p className="font-semibold text-foreground">
                     {image.downloads.toLocaleString()}
                   </p>
@@ -96,7 +98,7 @@ export function ImageModal({ image, onClose }: ImageModalProps) {
             <div>
               <div className="flex items-center gap-2 mb-3">
                 <Tag className="w-4 h-4 text-muted-foreground" />
-                <p className="text-sm text-muted-foreground">Tags</p>
+                <p className="text-sm text-muted-foreground">{t('modal.tags')}</p>
               </div>
               <div className="flex flex-wrap gap-2">
                 {tags.map((tag, index) => (
@@ -116,7 +118,7 @@ export function ImageModal({ image, onClose }: ImageModalProps) {
               className="mt-auto"
             >
               <Button className="w-full h-11 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground">
-                View on Pixabay
+                {t('modal.viewOnPixabay')}
               </Button>
             </a>
           </div>
