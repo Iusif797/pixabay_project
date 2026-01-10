@@ -23,19 +23,19 @@ export function Pagination({
   const canGoNext = currentPage < totalPages;
 
   return (
-    <div className="flex items-center justify-center gap-4 py-8">
+    <div className="flex items-center justify-center gap-2 sm:gap-4 py-6 sm:py-8">
       <Button
         variant="outline"
         onClick={onPrevPage}
         disabled={!canGoPrev || isLoading}
-        className="h-11 px-5 rounded-xl border-border bg-card hover:bg-secondary
+        className="h-10 sm:h-11 px-3 sm:px-5 rounded-xl border-border bg-card hover:bg-secondary
                    disabled:opacity-40 disabled:cursor-not-allowed
-                   transition-all duration-200"
+                   transition-all duration-200 text-xs sm:text-sm"
       >
-        <ChevronLeft className="w-5 h-5 mr-1" />
-        {t('pagination.previous')}
+        <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 sm:mr-1" />
+        <span className="hidden sm:inline">{t('pagination.previous')}</span>
       </Button>
-      <span className="text-muted-foreground font-medium px-4">
+      <span className="text-xs sm:text-sm text-muted-foreground font-medium px-2 sm:px-4">
         {t('pagination.page')} <span className="text-foreground">{currentPage}</span> {t('pagination.of')}{" "}
         <span className="text-foreground">{totalPages}</span>
       </span>
@@ -43,12 +43,12 @@ export function Pagination({
         variant="outline"
         onClick={onNextPage}
         disabled={!canGoNext || isLoading}
-        className="h-11 px-5 rounded-xl border-border bg-card hover:bg-secondary
+        className="h-10 sm:h-11 px-3 sm:px-5 rounded-xl border-border bg-card hover:bg-secondary
                    disabled:opacity-40 disabled:cursor-not-allowed
-                   transition-all duration-200"
+                   transition-all duration-200 text-xs sm:text-sm"
       >
-        {t('pagination.next')}
-        <ChevronRight className="w-5 h-5 ml-1" />
+        <span className="hidden sm:inline">{t('pagination.next')}</span>
+        <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 sm:ml-1" />
       </Button>
     </div>
   );

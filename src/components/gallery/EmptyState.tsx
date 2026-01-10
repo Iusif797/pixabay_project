@@ -29,14 +29,14 @@ export function EmptyState({ type, message }: EmptyStateProps) {
   const { icon: Icon, title, description } = config[type];
 
   return (
-    <div className="flex flex-col items-center justify-center py-20 gap-4 animate-fade-in">
-      <div className="w-20 h-20 rounded-2xl bg-secondary flex items-center justify-center">
-        <Icon className="w-10 h-10 text-muted-foreground" />
+    <div className="flex flex-col items-center justify-center py-12 sm:py-20 gap-4 animate-fade-in px-4">
+      <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-secondary flex items-center justify-center">
+        <Icon className="w-8 h-8 sm:w-10 sm:h-10 text-muted-foreground" />
       </div>
       
-      <div className="text-center">
-        <h3 className="text-xl font-semibold text-foreground mb-1">{title}</h3>
-        <p className="text-muted-foreground">{description}</p>
+      <div className="text-center max-w-md">
+        <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-1">{title}</h3>
+        <p className="text-sm sm:text-base text-muted-foreground">{description}</p>
       </div>
     </div>
   );

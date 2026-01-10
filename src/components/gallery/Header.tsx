@@ -37,14 +37,14 @@ export function Header({
             variant={showFavorites ? "default" : "outline"}
             onClick={onToggleFavorites}
             className={cn(
-              "h-10 px-4 rounded-xl transition-all duration-200",
+              "h-10 px-3 sm:px-4 rounded-xl transition-all duration-200 text-xs sm:text-sm",
               showFavorites && "bg-favorite text-favorite-foreground hover:bg-favorite/90"
             )}
           >
-            <Heart className={cn("w-4 h-4 mr-2", showFavorites && "fill-current")} />
-            {t('header.favorites')}
+            <Heart className={cn("w-4 h-4 sm:mr-2", showFavorites && "fill-current")} />
+            <span className="hidden sm:inline">{t('header.favorites')}</span>
             {favoritesCount > 0 && (
-              <span className="ml-2 px-2 py-0.5 text-xs rounded-full bg-background/20">
+              <span className="ml-0 sm:ml-2 px-2 py-0.5 text-xs rounded-full bg-background/20">
                 {favoritesCount}
               </span>
             )}
@@ -53,36 +53,36 @@ export function Header({
             <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost"
-                className="h-10 px-3 rounded-xl gap-2"
+                className="h-10 px-2 sm:px-3 rounded-xl gap-1 sm:gap-2"
               >
-                <span className="text-lg">
+                <span className="text-base sm:text-lg">
                   {language === 'en' ? '🇬🇧' : '🇷🇺'}
                 </span>
-                <span className="font-medium">
+                <span className="hidden sm:inline font-medium text-xs sm:text-sm">
                   {language === 'en' ? 'EN' : 'RU'}
                 </span>
-                <ChevronDown className="w-4 h-4" />
+                <ChevronDown className="w-4 h-4 hidden sm:inline" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-40">
+            <DropdownMenuContent align="end" className="w-36 sm:w-40">
               <DropdownMenuItem 
                 onClick={() => language !== 'en' && toggleLanguage()}
-                className="cursor-pointer"
+                className="cursor-pointer text-xs sm:text-sm"
               >
-                <span className="text-lg mr-2">🇬🇧</span>
+                <span className="text-base sm:text-lg mr-2">🇬🇧</span>
                 <span>English</span>
                 {language === 'en' && (
-                  <span className="ml-auto text-primary">✓</span>
+                  <span className="ml-auto text-primary text-xs">✓</span>
                 )}
               </DropdownMenuItem>
               <DropdownMenuItem 
                 onClick={() => language !== 'ru' && toggleLanguage()}
-                className="cursor-pointer"
+                className="cursor-pointer text-xs sm:text-sm"
               >
-                <span className="text-lg mr-2">🇷🇺</span>
+                <span className="text-base sm:text-lg mr-2">🇷🇺</span>
                 <span>Русский</span>
                 {language === 'ru' && (
-                  <span className="ml-auto text-primary">✓</span>
+                  <span className="ml-auto text-primary text-xs">✓</span>
                 )}
               </DropdownMenuItem>
             </DropdownMenuContent>
@@ -91,12 +91,12 @@ export function Header({
             variant="ghost"
             size="icon"
             onClick={onToggleTheme}
-            className="w-10 h-10 rounded-xl"
+            className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl"
           >
             {isDark ? (
-              <Sun className="w-5 h-5" />
+              <Sun className="w-4 h-4 sm:w-5 sm:h-5" />
             ) : (
-              <Moon className="w-5 h-5" />
+              <Moon className="w-4 h-4 sm:w-5 sm:h-5" />
             )}
           </Button>
         </div>

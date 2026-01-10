@@ -43,13 +43,13 @@ export default function Index() {
         isDark={isDark}
         onToggleTheme={toggleTheme}
       />
-      <main className="container py-8">
+      <main className="container py-4 sm:py-6 lg:py-8">
         {!showFavorites && (
-          <section className="text-center mb-12">
-            <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-4 animate-slide-up">
+          <section className="text-center mb-8 sm:mb-12">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3 sm:mb-4 animate-slide-up">
               {t('main.title')}
             </h1>
-            <p className="text-lg text-muted-foreground mb-8 animate-slide-up">
+            <p className="text-sm sm:text-base lg:text-lg text-muted-foreground mb-6 sm:mb-8 animate-slide-up px-4">
               {t('main.subtitle')}
             </p>
 
@@ -62,11 +62,11 @@ export default function Index() {
           </section>
         )}
         {showFavorites && (
-          <section className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-foreground mb-2">
+          <section className="text-center mb-6 sm:mb-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
               Your Favorites
             </h2>
-            <p className="text-muted-foreground">
+            <p className="text-sm sm:text-base text-muted-foreground">
               {favorites.length} {favorites.length === 1 ? "image" : "images"} saved
             </p>
           </section>

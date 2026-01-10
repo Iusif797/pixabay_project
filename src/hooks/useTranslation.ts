@@ -54,6 +54,8 @@ const translations: Translations = {
   'modal.downloads': { en: 'Downloads', ru: 'Загрузки' },
   'modal.tags': { en: 'Tags', ru: 'Теги' },
   'modal.viewOnPixabay': { en: 'View on Pixabay', ru: 'Посмотреть на Pixabay' },
+  'modal.download': { en: 'Download', ru: 'Скачать' },
+  'modal.downloading': { en: 'Downloading...', ru: 'Загрузка...' },
   'pagination.previous': { en: 'Previous', ru: 'Предыдущая' },
   'pagination.next': { en: 'Next', ru: 'Следующая' },
   'pagination.page': { en: 'Page', ru: 'Страница' },

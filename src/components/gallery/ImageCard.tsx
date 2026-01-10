@@ -1,7 +1,8 @@
-import { Heart } from "lucide-react";
+import { Heart, Download } from "lucide-react";
 import type { PixabayImage } from "@/lib/pixabay";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "@/hooks/useTranslation";
+import { useState } from "react";
 
 interface ImageCardProps {
   image: PixabayImage;
@@ -11,9 +12,32 @@ interface ImageCardProps {
 }
 export function ImageCard({ image, isFavorite, onFavoriteToggle, onClick }: ImageCardProps) {
   const { t } = useTranslation();
+  const [isDownloading, setIsDownloading] = useState(false);
+
   const handleFavoriteClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     onFavoriteToggle();
+  };
+
+  const handleDownload = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsDownloading(true);
+    try {
+      const response = await fetch(image.webformatURL);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `pixabay-${image.id}-${image.user}.jpg`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Download failed:', error);
+    } finally {
+      setIsDownloading(false);
+    }
   };
 
   return (
@@ -54,21 +78,40 @@ export function ImageCard({ image, isFavorite, onFavoriteToggle, onClick }: Imag
           </div>
         </div>
       </div>
-      <button
-        onClick={handleFavoriteClick}
-        className={cn(
-          "absolute top-3 right-3 p-2 rounded-full transition-all duration-200",
-          "backdrop-blur-md shadow-lg",
-          isFavorite
-            ? "bg-favorite text-favorite-foreground scale-110"
-            : "bg-card/80 text-muted-foreground hover:bg-card hover:text-foreground"
-        )}
-        aria-label={isFavorite ? t('imageCard.removeFavorite') : t('imageCard.addFavorite')}
-      >
-        <Heart
-          className={cn("w-5 h-5 transition-transform", isFavorite && "fill-current")}
-        />
-      </button>
+      <div className="absolute top-3 right-3 flex flex-col gap-2">
+        <button
+          onClick={handleFavoriteClick}
+          className={cn(
+            "p-2 rounded-full transition-all duration-200",
+            "backdrop-blur-md shadow-lg",
+            isFavorite
+              ? "bg-favorite text-favorite-foreground scale-110"
+              : "bg-card/80 text-muted-foreground hover:bg-card hover:text-foreground"
+          )}
+          aria-label={isFavorite ? t('imageCard.removeFavorite') : t('imageCard.addFavorite')}
+        >
+          <Heart
+            className={cn("w-5 h-5 transition-transform", isFavorite && "fill-current")}
+          />
+        </button>
+        <button
+          onClick={handleDownload}
+          disabled={isDownloading}
+          className={cn(
+            "p-2 rounded-full transition-all duration-200",
+            "backdrop-blur-md shadow-lg",
+            "bg-card/80 text-muted-foreground hover:bg-card hover:text-foreground",
+            "disabled:opacity-50 disabled:cursor-not-allowed"
+          )}
+          aria-label={t('modal.download')}
+        >
+          {isDownloading ? (
+            <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin" />
+          ) : (
+            <Download className="w-5 h-5" />
+          )}
+        </button>
+      </div>
     </div>
   );
 }
