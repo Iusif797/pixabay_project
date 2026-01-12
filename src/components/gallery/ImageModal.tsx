@@ -3,6 +3,7 @@ import { X, Heart, Download, Tag, User, Loader2 } from "lucide-react";
 import type { PixabayImage } from "@/lib/pixabay";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "@/hooks/useTranslation";
+import { useDownloads } from "@/hooks/useDownloads";
 
 interface ImageModalProps {
   image: PixabayImage;
@@ -10,6 +11,7 @@ interface ImageModalProps {
 }
 export function ImageModal({ image, onClose }: ImageModalProps) {
   const { t } = useTranslation();
+  const { addDownload } = useDownloads();
   const [isDownloading, setIsDownloading] = useState(false);
 
   const handleDownload = async () => {
@@ -25,6 +27,18 @@ export function ImageModal({ image, onClose }: ImageModalProps) {
       link.click();
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
+
+      addDownload({
+        id: image.id,
+        previewURL: image.previewURL,
+        webformatURL: image.webformatURL,
+        largeImageURL: image.largeImageURL,
+        tags: image.tags,
+        user: image.user,
+        userImageURL: image.userImageURL,
+        likes: image.likes,
+        downloads: image.downloads,
+      });
     } catch (error) {
       console.error('Download failed:', error);
     } finally {
